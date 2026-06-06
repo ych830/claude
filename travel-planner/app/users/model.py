@@ -16,9 +16,10 @@ class UserPreference(Base):
     gender: Mapped[str | None] = mapped_column(String, nullable=True)
     age: Mapped[int | None] = mapped_column(Integer, nullable=True)
     companion_type: Mapped[str | None] = mapped_column(String, nullable=True)
-    travel_styles: Mapped[list[str] | None] = mapped_column(ARRAY(String), nullable=True)
-    budget_range: Mapped[str | None] = mapped_column(String, nullable=True)
-    transport_pref: Mapped[list[str] | None] = mapped_column(ARRAY(String), nullable=True)
+    travel_purposes: Mapped[list[str] | None] = mapped_column(ARRAY(String), nullable=True)
+    budget_level: Mapped[str | None] = mapped_column(String, nullable=True)
+    preferred_transport: Mapped[list[str] | None] = mapped_column(ARRAY(String), nullable=True)
+    disliked_categories: Mapped[list[str] | None] = mapped_column(ARRAY(String), nullable=True)
     updated_at: Mapped[datetime] = mapped_column(
         DateTime(timezone=True), server_default=func.now(), onupdate=func.now()
     )

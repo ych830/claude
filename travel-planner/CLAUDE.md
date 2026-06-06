@@ -114,7 +114,7 @@ travel-planner/
 |---|---|---|
 | Phase 1 | 프로젝트 초기 세팅 (구조, 환경변수, DB, 공통 응답/예외) | ✅ 완료 |
 | Phase 2 | 사용자/인증 (User, Preference, 회원가입, 로그인, JWT, 내 정보) | 🟡 코드 완료, **Alembic 마이그레이션 미완** |
-| Phase 3 | 장소/지도 (Place 모델, 검색 API, Google/Kakao Client, Geocoding) | ⬜ **다음 작업** |
+| Phase 3 | 장소/지도 (Place 모델, 검색 API, Google/Kakao Client) | ✅ 완료 |
 | Phase 4 | AI 일정 생성 MVP | ⬜ |
 | Phase 5 | 일정 수정 | ⬜ |
 | Phase 6 | SNS 링크 기반 일정 생성 | ⬜ |
@@ -124,7 +124,7 @@ travel-planner/
 | Phase 10 | 배포 준비 | ⬜ |
 
 ### 아직 안 된 것 (주의)
-- **Alembic 마이그레이션 미설정** → 현재 DB 테이블 생성 안 됨. Phase 2 완료 기준 미충족.
+- **Alembic 마이그레이션 미설정** → 현재 DB 테이블 생성 안 됨. Phase 2, 3 완료 기준 미충족.
 - `/health` 는 동작하지만 실제 DB 연결 테스트는 미검증.
 - 의존성 설치(`pip install -r requirements.txt`) 및 실행 검증 안 됨.
 
@@ -175,22 +175,21 @@ ticket_price(json), source
 
 ## 6. 다음 스텝
 
-**Phase 3: 장소/지도 기본 기능** (원본 로드맵 기준)
+**Phase 4: AI 일정 생성 MVP** (원본 로드맵 기준)
 
 작업 항목:
-1. `places/model.py` — Place 모델 (원본 05 명세 필드 기준)
-2. `clients/google_maps_client.py` — Google Maps Geocoding/Places
-3. `clients/kakao_map_client.py` — Kakao 로컬 검색
-4. `places/schema.py`, `repository.py`, `service.py`, `router.py`
-5. 장소 검색 API: `GET /api/v1/places/search`, `GET /api/v1/places/{id}`,
-   `GET /api/v1/places/{id}/nearby`
+1. `clients/llm_client.py` — Anthropic Claude API 클라이언트
+2. `app/ai/prompts/itinerary_prompt.py` — LLM 프롬프트 관리
+3. `app/ai/itinerary_generator.py` — 일정 생성 로직
+4. `itineraries/model.py` — Itinerary, ItineraryDay, ItineraryItem 모델
+5. `itineraries/schema.py`, `repository.py`, `service.py`, `router.py`
+6. `POST /api/v1/itineraries/ai-generate` API 완성
 
-완료 기준: 장소명 입력 시 좌표를 저장할 수 있고, 일정에 등록된 장소를
-지도에 표시할 데이터를 반환한다.
+완료 기준: 여행지, 기간, 취향을 입력하면 일정표가 생성된다.
 
 > **작업 시작 전 사용자에게 먼저 질문할 것:**
-> - 외부 API는 mock으로 갈지 실제 키 연동을 가정할지
-> - Preference 필드명을 원본 명세에 맞게 수정할지
+> - Phase 4 바로 갈지, Alembic 마이그레이션(미완)부터 처리할지
+> - LLM 모델 기본값 확인 (현재 `.env.example`에 `claude-sonnet-4-6` 지정)
 
 ---
 

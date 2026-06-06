@@ -25,17 +25,19 @@ class UserService:
             gender=data.gender,
             age=data.age,
             companion_type=data.companion_type,
-            travel_styles=data.travel_styles,
-            budget_range=data.budget_range,
-            transport_pref=data.transport_pref,
+            travel_purposes=data.travel_purposes,
+            budget_level=data.budget_level,
+            preferred_transport=data.preferred_transport,
+            disliked_categories=data.disliked_categories,
         )
         return {
             "gender": pref.gender,
             "age": pref.age,
             "companion_type": pref.companion_type,
-            "travel_styles": pref.travel_styles,
-            "budget_range": pref.budget_range,
-            "transport_pref": pref.transport_pref,
+            "travel_purposes": pref.travel_purposes,
+            "budget_level": pref.budget_level,
+            "preferred_transport": pref.preferred_transport,
+            "disliked_categories": pref.disliked_categories,
         }
 
     async def get_travel_histories(self, user: User) -> list:
