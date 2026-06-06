@@ -15,6 +15,19 @@
 6. REST API로 구현한다. 기능별로 하나씩 나눠서 차근차근 스텝별로 개발한다.
 7. 작업 단위가 끝나면 커밋 & 푸시한다. 브랜치: `claude/adoring-hawking-kvwoE`
 
+### 0.1 코딩 4원칙 (Andrej Karpathy 기반)
+
+출처: https://github.com/multica-ai/andrej-karpathy-skills
+
+1. **Think Before Coding** — 가정을 명시적으로 말한다. 불확실하면 멈추고 질문한다.
+   여러 해석이 가능하면 나열하고 확인받는다. (위 규칙 1과 동일 정신)
+2. **Simplicity First** — 요청한 것만 최소한으로 구현한다. 단일 사용 코드에 추상화를 만들지 않는다.
+   "더 짧게 쓸 수 있나?" 자문하고, 그렇다면 다시 쓴다.
+3. **Surgical Changes** — 필요한 줄만 수정한다. 인접한 코드/주석/포맷을 임의로 "개선"하지 않는다.
+   내 변경이 만든 미사용 변수/import만 제거하고, 기존 dead code는 요청 없이 건드리지 않는다.
+4. **Goal-Driven Execution** — 검증 가능한 성공 기준을 먼저 정한다.
+   버그는 재현 테스트를 먼저 쓰고 통과시킨다. 다단계 작업은 단계별 검증 체크포인트를 둔다.
+
 ---
 
 ## 1. 프로젝트 개요
